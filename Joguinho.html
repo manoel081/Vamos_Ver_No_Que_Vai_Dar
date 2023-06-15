@@ -9,7 +9,7 @@
       background-color: #f1f1f1;
       text-align: center;
     }
-
+    
     .container {
       max-width: 600px;
       margin: 0 auto;
@@ -18,19 +18,20 @@
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-
+    
     h1 {
       color: #333;
     }
-
+    
     .question {
       margin-bottom: 20px;
     }
-
+    
     .hidden {
       display: none;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <div class="container">
@@ -60,13 +61,19 @@
   </div>
 
   <script>
+    var chances = 3;
+
     function checkAnswer1() {
       var answer = document.getElementById("answer1").value.toLowerCase();
       if (answer === "brasília") {
         document.getElementById("question1").classList.add("hidden");
         document.getElementById("question2").classList.remove("hidden");
       } else {
-        alert("Resposta incorreta! Tente novamente.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Resposta incorreta!',
+          text: 'Tente novamente.'
+        });
       }
     }
 
@@ -76,17 +83,47 @@
         document.getElementById("question2").classList.add("hidden");
         document.getElementById("question3").classList.remove("hidden");
       } else {
-        alert("Resposta incorreta! Tente novamente.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Resposta incorreta!',
+          text: 'Tente novamente.'
+        });
       }
     }
 
     function checkAnswer3() {
       var answer = document.getElementById("answer3").value.toLowerCase();
-      if (answer === "azul") {
+      if (answer === "sim") {
         document.getElementById("question3").classList.add("hidden");
         document.getElementById("success").classList.remove("hidden");
+        Swal.fire({
+          icon: 'success',
+          title: 'Parabéns!',
+          text: 'Você desbloqueou todas as etapas!🥰',
+          showConfirmButton: false,
+          timer: 3000
+        }).then(function() {
+          window.open("https://www.youtube.com/shorts/7Kqo3YRGq8E");
+        });
       } else {
-        alert("Resposta incorreta! Tente novamente.");
+        chances--;
+        if (chances > 0) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Resposta incorreta!',
+            text: 'Você tem mais ' + chances + ' chance(s). Tente novamente.'
+          });
+        } else {
+            Swal.fire({
+  icon: 'error',
+  title: 'Resposta incorreta!',
+  text: 'Suas chances acabaram. ❌💔',
+  showConfirmButton: false,
+  timer: 3000
+}).then(function() {
+  window.open("https://www.youtube.com/shorts/lYyVrMgMuPM");
+});
+        }
       }
     }
   </script>
