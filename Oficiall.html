@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="seila.css">
     <title>Isso não é um teste</title>
     <style>
         /* Estilos para a tela de diálogo */
@@ -204,15 +202,10 @@
             <div class="tab" id="tab1">
                 <p>Calma! &#x1F97A;</p>
                 <p1>Para ser deshackeado (a) basta prosseguir para a próxima tela<br> E responder algumas perguntnhas a seguir. </p1>
-                <button class="nextButton" onclick="displayElementById('next')">Próxima Aba >>></button>
-            
+                <button class="nextButton" onclick="window.location.href='https://github.com/manoel081/Vamos_Ver_No_Que_Vai_Dar/blob/main/Joguinho.html';">Próxima Aba >>></button>
             </div>
 
-            <div class="tab" id="tab2">
-                <p>isso &#x1F636;</p>
-                <button class="actionButton" onclick="window.location.href='https://www.youtube.com/shorts/7Kqo3YRGq8E';">Sim &#x1F642</button>
-                <button class="actionButton" onclick="countButtonClick()">Não &#x1F62C</button>
-            </div>
+          
 
             <div class="backButtonContainer">
                 <button class="prevButton backButton" onclick="displayElementById('previous')">Voltar</button>
@@ -262,15 +255,7 @@
             document.getElementById("dialog").style.display = "block";
         }
 
-        function countButtonClick() {
-            if (currentCount >= 2) {
-                window.open("https://www.youtube.com/shorts/lYyVrMgMuPM");
-                currentCount = 0;
-            } else {
-                currentCount += 1;
-            }
-            console.log(currentCount);
-        }
+       
     </script>
 </body>
 
