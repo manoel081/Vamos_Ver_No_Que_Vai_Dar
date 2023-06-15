@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jogo de Adivinhação</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Jogo de Adivinhação</h1>
+    <div id="question1" class="question">
+      <h2>Etapa 1:</h2>
+      <p>Qual é a capital do Brasil?</p>
+      <input type="text" id="answer1">
+      <button onclick="checkAnswer1()">Verificar Resposta</button>
+    </div>
+    <div id="question2" class="question hidden">
+      <h2>Etapa 2:</h2>
+      <p>Quantos lados tem um triângulo?</p>
+      <input type="text" id="answer2">
+      <button onclick="checkAnswer2()">Verificar Resposta</button>
+    </div>
+    <div id="question3" class="question hidden">
+      <h2>Etapa 3:</h2>
+      <p>Qual é a cor do céu?</p>
+      <input type="text" id="answer3">
+      <button onclick="checkAnswer3()">Verificar Resposta</button>
+    </div>
+    <div id="success" class="hidden">
+      <h2>Parabéns!</h2>
+      <p>Você desbloqueou todas as etapas!</p>
+    </div>
+  </div>
+
+  <script>
+    function checkAnswer1() {
+      var answer = document.getElementById("answer1").value.toLowerCase();
+      if (answer === "brasília") {
+        document.getElementById("question1").classList.add("hidden");
+        document.getElementById("question2").classList.remove("hidden");
+      } else {
+        alert("Resposta incorreta! Tente novamente.");
+      }
+    }
+
+    function checkAnswer2() {
+      var answer = document.getElementById("answer2").value.toLowerCase();
+      if (answer === "três" || answer === "3") {
+        document.getElementById("question2").classList.add("hidden");
+        document.getElementById("question3").classList.remove("hidden");
+      } else {
+        alert("Resposta incorreta! Tente novamente.");
+      }
+    }
+
+    function checkAnswer3() {
+      var answer = document.getElementById("answer3").value.toLowerCase();
+      if (answer === "azul") {
+        document.getElementById("question3").classList.add("hidden");
+        document.getElementById("success").classList.remove("hidden");
+      } else {
+        alert("Resposta incorreta! Tente novamente.");
+      }
+    }
+  </script>
+</body>
+</html>
