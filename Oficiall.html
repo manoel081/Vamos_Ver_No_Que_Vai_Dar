@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="seila.css">
+    <title>Isso não é um teste</title>
+    <style>
+        /* Estilos para a tela de diálogo */
+        .dialog {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .dialog #tab1 {
+            display: none;
+        }
+
+        .dialog #tab2 {
+            display: none;
+        }
+
+        .dialog-content {
+            background-color: #ffffff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888888;
+            width: 80%;
+        }
+
+        /* Estilos para as abas */
+        .tab {
+            display: block;
+        }
+
+        /* Estilos para os botões de navegação */
+        .prevButton,
+        .nextButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease-in-out;
+
+        }
+
+        .nextButton:hover {
+            background-color: #00ccff;
+        }
+
+        .prevButton {
+            float: left;
+            margin-left: 10px;
+        }
+
+        .nextButton {
+            float: right;
+            margin-right: 10px;
+        }
+
+        /* Estilos para os botões de ação */
+        .actionButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        /* Estilos adicionais */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #111;
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 12px 24px;
+        }
+
+        .backButtonContainer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .backButton {
+            background-color: #f1f1f1;
+            color: black;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        /* Estilos adicionados ao botão "click aqui" */
+        #clickButton {
+            width: 220px;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        #clickButton:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        #clickButton:active {
+            color: #000
+        }
+
+        #clickButton:active:after {
+            background: transparent;
+        }
+
+        #clickButton:hover:before {
+            opacity: 1;
+        }
+
+        #clickButton:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        @keyframes glowing {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        /* Estilos para os textos */
+        p {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p1 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="clickButton" onclick="openDialog()">click aqui!</button>
+
+    <div id="dialog" class="dialog">
+        <div class="dialog-content">
+            <div class="tab" id="tab">
+                <p>Tamo Papudo:</p>
+                <p1>Você está sendo Hakeado(a) &#x26A0;</p1>
+                <button class="nextButton" onclick="displayElementById('next')">Próxima Aba >>></button>
+            </div>
+
+            <div class="tab" id="tab1">
+                <p>Calma! &#x1F97A;</p>
+                <p1>Para ser deshackeado (a) basta prosseguir para a próxima tela<br> E responder algumas perguntnhas a
+                    seguir. </p1>
+                <button class="nextButton"
+                    onclick="window.location.href='https://www.youtube.com/shorts/7Kqo3YRGq8E';">Próxima Aba
+                    >>></button>
+            </div>
+            < <div class="backButtonContainer">
+                <button class="prevButton backButton" onclick="displayElementById('previous')">Voltar</button>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        var elementIds = [];
+        var currentTab = 0;
+        var button2ClickCount = 0;
+        var currentCount = 0;
+
+        function displayElementById(direction) {
+            var elementId;
+            if (direction == "next") {
+                currentTab = (currentTab + 1) % elementIds.length;
+            } else if (direction == "previous") {
+                if (currentTab != 0) {
+                    currentTab = (currentTab - 1 + elementIds.length) % elementIds.length;
+                } else {
+                    document.getElementById("dialog").style.display = "none";
+                }
+            }
+            elementId = elementIds[currentTab];
+
+            if (elementId) {
+                var element = document.getElementById(elementId);
+                var allElements = document.getElementsByClassName("tab");
+                for (var i = 0; i < allElements.length; i++) {
+                    allElements[i].style.display = "none";
+                }
+                element.style.display = "block";
+            }
+        }
+
+        function initializeElementIds() {
+            var elements = document.getElementsByClassName("tab");
+            for (var i = 0; i < elements.length; i++) {
+                elementIds.push(elements[i].id);
+            }
+        }
+
+        initializeElementIds(); // Call the function to initialize element IDs
+
+        function openDialog() {
+            document.getElementById("dialog").style.display = "block";
+        }
+
+
+    </script>
+</body>
+
+</html>
